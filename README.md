@@ -1,1 +1,1 @@
-![[EDU got pwned ENG]]
+![[EDU got pwned ENG.md]]
