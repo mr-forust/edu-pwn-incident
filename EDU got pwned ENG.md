@@ -1,6 +1,7 @@
 ## Recently we encountered an attack on a edu.edu.vn.ua's inbox:
 
 ![](Pasted%20image%2020250529001736.png)
+
 After attempt to read an inbox - a youtube rickroll page appears:
 Origin GET request:
 `GET /messages/inbox HTTP/2
@@ -49,17 +50,23 @@ Priority: u=0, i
 `
 Via burpsuite, I intercepted malicious get request
 
+
 ![](Pasted%20image%2020250529002114.png)
 Also, I can notice, that original edu.edu.vn.ua inbox's page loads normaly until it want's to read all recieved messages.
+
 ![](Pasted%20image%2020250529002407.png)
+
 After some HTML analysis, we found a suspicious payload:
 ![](Pasted%20image%2020250529002633.png)
+
 `const codes = [ 104,116,116,112,115,58,47,47,121,111,117,116,117,46,98,101,47, 120,118,70,90,106,111,53,80,103,71,48,63,115,105,61,102,71,119, 95,75,74,53,89,75,66,108,75,80,121,68,73 ]; window.location.href = String.fromCharCode(...codes);`
 From a message with a link https://edu.edu.vn.ua/messages/view/500113
 
 After going to that link, we've found a possible attacker:
 [Захаренков Іван Олексійович](https://edu.edu.vn.ua/user/profile/24674)
+
 ![](Pasted%20image%2020250529002832.png)
+
 
 Using ChatGpt:
 >Ага, вот он и есть — классический XSS с обходом фильтров через String.fromCharCode:
